@@ -1,12 +1,18 @@
-from llama_agents import (
-    AgentService,
-    AgentOrchestrator,
-    ControlPlaneServer,
-    SimpleMessageQueue
-)
+# Sean Schumacher
+# CRAG model
+# July 17 2024
 
-from llama_index.core.agent import ReActAgent
-from llama_index.core.tools import FunctionTool
-from llama_index.llms.openai import OpenAI
+# A Model using CRAG approach built out in paper
+# Allows for self reflection and self grading
 
-# create an agent
+import os
+
+# env variables
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
+TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
+
+# Add LandSmith tracing here if needed
+# Add later, lower priority
+
+### Setup Retriever
