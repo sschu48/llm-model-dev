@@ -1,4 +1,4 @@
-from tools.generate import generate
+from tools.generate import rag_chain
 
 def generate(state):
     """
@@ -15,5 +15,5 @@ def generate(state):
     documents = state["documents"]
 
     # RAG generation
-    generation = generate(question=question, docs=documents)
+    generation = rag_chain().invoke({"context": documents, "question": question})
     return {"documents": documents, "question": question, "generation": generation}

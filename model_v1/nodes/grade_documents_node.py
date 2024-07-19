@@ -18,10 +18,10 @@ def grade_documents_node(state):
     # Score each doc
     filtered_docs = []
     web_search = "No"
-    grader = grade_documents(question=question, doc_txt=documents)
-    print(type(documents))
     for d in documents:
-        score = grader.invoke({"question": question, "document": d.page_content})
+        score = grade_documents().invoke(
+            {"question": question, "document": d.page_content}
+        )
         grade = score.binary_score
         if grade == "yes":
             print("---GRADE: DOCUMENT RELEVANT---")

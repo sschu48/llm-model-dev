@@ -15,5 +15,4 @@ def retrieve(state):
 
     # Retrieval
     documents = retriever().get_relevant_documents(question)
-    doc_txt = documents[1].page_content
-    return {"documents": doc_txt, "question": question}
+    return {"documents": documents, "question": question}

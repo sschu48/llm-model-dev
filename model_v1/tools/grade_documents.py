@@ -1,6 +1,7 @@
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.pydantic_v1 import BaseModel, Field
 from models.llm import llm
+from tools.retriever import retriever
 
 # Data model
 class GradeDocuments(BaseModel):
@@ -10,7 +11,17 @@ class GradeDocuments(BaseModel):
         description="Documents are relevant to the question, 'yes' or 'no'"
     )
 
-def grade_documents(question, doc_txt):
+def grade_documents():
+    """
+    Grades retrieved documents based on relevance to question
+
+    Args: 
+        question (str): User query
+
+    Returns: 
+        relevance (str) binary 'yes' or 'no' based
+    """
+
     # LLM with function call
     structured_llm_grader = llm.with_structured_output(GradeDocuments)
 
@@ -26,4 +37,6 @@ def grade_documents(question, doc_txt):
     )
 
     retrieval_grader = grade_prompt | structured_llm_grader # chain
+    # docs = retriever().get_relevant_documents(question)
+    # dox_txt  =docs[1].page_content
     return retrieval_grader

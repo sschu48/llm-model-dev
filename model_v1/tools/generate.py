@@ -2,10 +2,10 @@ from langchain import hub
 from langchain_core.output_parsers import StrOutputParser
 from models.llm import llm
 
-def generate(docs, question):
+def rag_chain():
     """
     Return llm  generated content based off of retrieved documents and provided question
-    """
+    """ 
     # prompt 
     prompt = hub.pull("rlm/rag-prompt")
 
@@ -16,4 +16,4 @@ def generate(docs, question):
     def format_docs(docs):
         return "\n\n".join(doc.page_content for doc in docs)
 
-    return rag_chain.invoke({"context": docs, "question": question})
+    return rag_chain
