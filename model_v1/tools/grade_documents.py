@@ -26,4 +26,4 @@ def grade_documents(question, doc_txt):
     )
 
     retrieval_grader = grade_prompt | structured_llm_grader # chain
-    return retrieval_grader.invoke({"question": question, "document": doc_txt})
+    return retrieval_grader

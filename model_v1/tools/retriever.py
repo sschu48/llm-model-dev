@@ -10,4 +10,5 @@ def retriever():
         embedding=embedding_model,
         index_name="rag-retriever-v2"
     )
-    return vectorstore.as_retriever()
+    retriever = vectorstore.as_retriever()
+    return retriever
