@@ -20,7 +20,7 @@ os.environ["TAVILY_API_KEY"] = os.getenv("TAVILY_API_KEY")
 
 from graph import app # import langgraph model
 
-# Add LandSmith tracing here if needed
+# Add LangSmith tracing here if needed
 # Add later, lower priority
 
 def main():
