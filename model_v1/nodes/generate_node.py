@@ -12,8 +12,9 @@ def generate(state):
     """
     print("---GENERATE---")
     question = state["question"]
+    conversation_history = state["conversation_history"]
     documents = state["documents"]
 
     # RAG generation
-    generation = rag_chain().invoke({"context": documents, "question": question})
-    return {"documents": documents, "question": question, "generation": generation}
+    generation = rag_chain().invoke({"context": documents, "question": conversation_history})
+    return {"documents": documents, "question": question, "generation": generation, "conversation_history": conversation_history}
