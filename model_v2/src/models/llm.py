@@ -2,3 +2,34 @@
 # all conversations will be had using this model
 # will be using chatgpt 3.5 for now...
 
+import openai
+from typing import List, Dict
+
+class LLM:
+    def __init__(self, api_key: str, model: str = "gpt-3.5-turbo-0125"):
+        openai.api_key = api_key
+        self.model = model
+
+    def generate(self, prompt: str, max_tokens: int = 150) -> str:
+        try:
+            response = openai.ChatCompletion.create(
+                model=self.model,
+                messages=[{"role": "user", "content": prompt}],
+                max_tokens=max_tokens
+            )
+            return response.choices[0].message.content.strip()
+        except Exception as e:
+            print(f"Error in generating response: {e}")
+            return ""
+
+    def chat(self, messages: List[Dict[str, str]], max_tokens: int = 150) -> str:
+        try:
+            response = openai.ChatCompletion.create(
+                model=self.model,
+                messages=messages,
+                max_tokens=max_tokens
+            )
+            return response.choices[0].message.content.strip()
+        except Exception as e:
+            print(f"Error in chat: {e}")
+            return ""
